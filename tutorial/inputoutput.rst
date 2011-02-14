@@ -1,17 +1,16 @@
 .. _tut-io:
 
 ****************
-Input and Output
+Орц ба гарц
 ****************
 
-There are several ways to present the output of a program; data can be printed
-in a human-readable form, or written to a file for future use. This chapter will
-discuss some of the possibilities.
-
+Програмын гарцыг илэрхийлэх хэд хэдэн арга байдаг. Хүн уншихад 
+ойлгомжтойгоор хэвлэх буюу файлд бичиж хадгалан авч болдог.
+Энэ бүлэгт зарим боломжоос танилцуулах болно.
 
 .. _tut-formatting:
 
-Fancier Output Formatting
+Гарцыг гоёмсгоор үзүүлэх
 =========================
 
 So far we've encountered two ways of writing values: *expression statements* and
