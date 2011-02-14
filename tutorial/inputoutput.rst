@@ -13,10 +13,10 @@
 Гарцыг гоёмсгоор үзүүлэх
 =========================
 
-So far we've encountered two ways of writing values: *expression statements* and
-the :keyword:`print` statement.  (A third way is using the :meth:`write` method
-of file objects; the standard output file can be referenced as ``sys.stdout``.
-See the Library Reference for more information on this.)
+Урьд нь бид бичлэгийн хоёр арга үзсэн билээ: *expression statements* ба
+:keyword:`print` илэрхийлэл. (Гурав дахь арга нь файл обьектын :meth:`write`
+методыг ашиглах юм. Стандарт гарцын файлыг ``sys.stdout`` нэрээр авч
+болно. Сангийн лавлахаас дэлгэрэнгүйг үзээрэй.)
 
 .. index:: module: string
 
