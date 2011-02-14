@@ -20,13 +20,13 @@
 
 .. index:: module: string
 
-Often you'll want more control over the formatting of your output than simply
-printing space-separated values.  There are two ways to format your output; the
-first way is to do all the string handling yourself; using string slicing and
-concatenation operations you can create any layout you can imagine.  The
-standard module :mod:`string` contains some useful operations for padding
-strings to a given column width; these will be discussed shortly.  The second
-way is to use the :meth:`str.format` method.
+Та гарцаа үзүүлэхдээ зүгээр нэг хоосон зайгаар тусгаарласан утга
+хэвлэхээс илүүг хүсэх нь мэдээж. Гарцыг хэвжүүлэх хоёр арга байна;
+эхний арга нь тэмдэгт мөр хэрчих, залгах аргуудаар тэмдэгт мөрийн учрыг
+өөрөө олж хүссэн үр дүнгээ гаргах боломжтой. :mod:`string` стандарт модульд
+тэмдэгт мөрийг өгөгдсөн баганы өргөнөөр жийрэглэх зэрэг боломжтой;
+эдгээрийн талаар удахгүй өгүүлнэ. Хоёр дахь арга нь :meth:`str.format`
+методыг ашиглах юм.
 
 One question remains, of course: how do you convert values to strings? Luckily,
 Python has ways to convert any value to a string: pass it to the :func:`repr`
