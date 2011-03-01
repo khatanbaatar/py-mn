@@ -31,6 +31,7 @@
    :maxdepth: 1
 
    tutorial/index
+   peps/pep-0008
 
 Indices and tables
 ==================
