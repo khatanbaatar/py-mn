@@ -1,4 +1,5 @@
 PEP: 8
+======
 Title: Пайтон кодын style guide
 Version: $Revision$
 Last-Modified: $Date$
