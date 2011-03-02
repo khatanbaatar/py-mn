@@ -1,48 +1,51 @@
 .. _tut-io:
 
 ****************
-Input and Output
+Оролт, гаралт
 ****************
 
-There are several ways to present the output of a program; data can be printed
-in a human-readable form, or written to a file for future use. This chapter will
-discuss some of the possibilities.
+Програмын гаралтыг хэд хэдэн аргаар дүрслэх боломжтой; Өгөгдлийг хүнд ойлгогдох
+хэлбэрээр хэвлэж болно, эсвэл ирэйдүүд хэрэглэхээр файл руу хадгалж болно. Энэ
+бүлгээр бид эдгээр аргуудын заримтай нь дэлгэрэнгүй танилцах болно.
 
 
 .. _tut-formatting:
 
-Fancier Output Formatting
-=========================
+Гоёмсог гаралтын хэлбэржүүлэлт
+==============================
 
-So far we've encountered two ways of writing values: *expression statements* and
-the :keyword:`print` statement.  (A third way is using the :meth:`write` method
-of file objects; the standard output file can be referenced as ``sys.stdout``.
-See the Library Reference for more information on this.)
+Өмнөх бүлгүүдээр бид *expression statements* болон түлхүүр үг 'print' ийг ашиглан 
+утга хэвлэхийг үзсэн билээ.  (Гурав дахь арга нь файлын ``write()`` функцыг
+ашиглах арга юм; стандарт гаралтын файл нь ``sys.stdout`` аар заагддаг. Илүү
+дэлгэрэнгүй мэдээллийг Үндсэн сангийн лавлахаас харна уу.)
 
 .. index:: module: string
 
-Often you'll want more control over the formatting of your output than simply
-printing space-separated values.  There are two ways to format your output; the
-first way is to do all the string handling yourself; using string slicing and
-concatenation operations you can create any layout you can imagine.  The
-standard module :mod:`string` contains some useful operations for padding
-strings to a given column width; these will be discussed shortly.  The second
-way is to use the :meth:`str.format` method.
+Ихэнхдээ та нар энгийн хоосон зайгаар тусгаарлагдсан хэлбэрээр гаралтаа
+хэвлэхээс илүү олон төрлөөр хэвлэхийг хүсдэг. Энд гаралтыг хэвжүүлэх хоёр 
+төрлийн арга байдаг; Эхний арга нь тухайн стрингээ боловсруулахад өөрөө бүгдийг
+хийх; стринг хуваах болон нилүүлэх опературуудыг ашиглан өөрийн хүсэж байсан
+хэлбэртэй стрингийг үүсгэж болно. Стандарт модуль :mod:`string` нь стрингийг 
+тухайн өгөгдсөн баганд багтаахад зориулсан хэрэгцээтэй функцуудыг агуулдаг;
+Удахгүй үүний талаар бага зэрэг тайлбарлах болно. Хоёр дахь арга нь 
+:meth:`str.format` функцыг ашиглах юм.
 
-One question remains, of course: how do you convert values to strings? Luckily,
-Python has ways to convert any value to a string: pass it to the :func:`repr`
-or :func:`str` functions.
+Мэдээж бидэнд нэг асуулт урган гарч ирж байна, Хэрхэн хувьсагчийн утгуудыг стринг
+төрөл рүү хөрвүүлэх вэ? гэдэг. Азаар путон ямар нэг утгыг стринг руу хөрвүүлэх 
+дараах аргатай: Тухайн төрлийн өгөгдөлд :func:`repr` эсвэл :func:`str` функцуудыг 
+дамжуулах.
 
-The :func:`str` function is meant to return representations of values which are
-fairly human-readable, while :func:`repr` is meant to generate representations
-which can be read by the interpreter (or will force a :exc:`SyntaxError` if
-there is not equivalent syntax).  For objects which don't have a particular
-representation for human consumption, :func:`str` will return the same value as
-:func:`repr`.  Many values, such as numbers or structures like lists and
-dictionaries, have the same representation using either function.  Strings and
-floating point numbers, in particular, have two distinct representations.
+:func:`str` функц нь ихэнхдээ хүн уншихад зориулагдсан утгыг буцаахад
+зориулсан байдаг бол :func:`repr` функц нь ихэнхдээ компьютерийн эмхэтгэгчид
+уншигдахад зориулагдсан утгыг дүрслэхэд зориулагдсан байдаг (эсвэл
+:exc:`SyntaxError` буюу бичиглэлийн алдаа гарах үед хэрэглэх). Хүний
+хэрэгцээнд зориулсан тусгайлсан дүрслэл байхгүй объектын хувьд, :func:`str` нь
+:func:`repr` тай ижил утгыг буцаах болно. Тоон төрөл болон өгөгдлийн бүтцийн
+жагсаалт, толь гэх мэт ихэнх төрлүүдийн эдгээр функцууд нь ижил утга буцаадаг.
+Харин бутархай тоо, стринг гэх мэт төрлүүдийн дээрх функцууд нь өөр өөр утга 
+буцаадаг.
 
-Some examples::
+Жишээ::
 
    >>> s = 'Hello, world.'
    >>> str(s)
@@ -67,11 +70,11 @@ Some examples::
    ... repr((x, y, ('spam', 'eggs')))
    "(32.5, 40000, ('spam', 'eggs'))"
 
-Here are two ways to write a table of squares and cubes::
+Куб болон квадрад утгуудыг хүснэгтээр хэвлэх 2 төрлийн арга::
 
    >>> for x in range(1, 11):
    ...     print repr(x).rjust(2), repr(x*x).rjust(3),
-   ...     # Note trailing comma on previous line
+   ...     # Дээрх мөр таслал тэмдэгттэй байгааг анхаарна уу!
    ...     print repr(x*x*x).rjust(4)
    ...
     1   1    1
@@ -99,20 +102,23 @@ Here are two ways to write a table of squares and cubes::
     9  81  729
    10 100 1000
 
-(Note that in the first example, one space between each column was added by the
-way :keyword:`print` works: it always adds spaces between its arguments.)
+(Эхний жишээн дээр багана бүрийн хоорондох нэг хоосон зай нь :keyword:`print` ээр
+нэмэгдсэн юм: Энэ нь үргэлж өөрийнхөө аргументуудад хоосон зай нэмдэг юм.)
 
-This example demonstrates the :meth:`rjust` method of string objects, which
-right-justifies a string in a field of a given width by padding it with spaces
-on the left.  There are similar methods :meth:`ljust` and :meth:`center`.  These
-methods do not write anything, they just return a new string.  If the input
-string is too long, they don't truncate it, but return it unchanged; this will
-mess up your column lay-out but that's usually better than the alternative,
-which would be lying about a value.  (If you really want truncation you can
-always add a slice operation, as in ``x.ljust(n)[:n]``.)
+Дээрх жишээгээр стринг объектын :meth:`rjust` функцыг хэрхэн ашиглахыг үзүүллээ,
+энэ нь тухайн стрингийг өгөгдсөн урттай талбарт баруун шахаж талд нь байрлуулдаг ба
+зүүн талд үлдсэн сул зайг нь хоосон зайгаар орлуулдаг. Мөн :meth:`ljust` ба 
+:meth:`center` гэх төстөй функцууд байдаг. Эдгээр функцууд нь өгөгдсөн
+стрингийн утгыг өөрчилдөггүй ба харин шинээр стринг үүсгэдэг. Хэрвээ тухайн
+стринг нь хэтэрхий урт байвал өгөгдсөн уртад нь тааруулж тухайн стрингийг
+тасалдаггүй, ямарч өөрчлөлт хийлгүй тухайн стрингийг хэвээр нь буцаадаг; Энэ нь 
+магадгүй чиний баганы форматыг эвдэж болох ч энэ нь тухайн утгыг тасалсанаас 
+илүү дээр байдаг. (Хэрвээ чи үнэхээр тухайн утгыг өгөдсөн уртаар таслах хэрэгтэй 
+бол ``x.ljust(n)[:n]`` операторыг ашиглаж болно.)
 
-There is another method, :meth:`zfill`, which pads a numeric string on the left
-with zeros.  It understands about plus and minus signs::
+Мөн өшөө :meth:`zfill` гэдэг функц байгаа, энэ нь тоон утгатай стрингийн зүүн 
+талд тэгийг нэмдэг.  Энэхүү функц нь тухайн тоон стрингийн нэмэх, хасах
+тэмдгийг ойлгож чадна::
 
    >>> '12'.zfill(5)
    '00012'
@@ -121,36 +127,35 @@ with zeros.  It understands about plus and minus signs::
    >>> '3.14159265359'.zfill(5)
    '3.14159265359'
 
-Basic usage of the :meth:`str.format` method looks like this::
+:meth:`str.format` функцыг хэрэглэх энгийн жишээ нь дараах хэлбэртэй байна::
 
    >>> print 'We are the {} who say "{}!"'.format('knights', 'Ni')
    We are the knights who say "Ni!"
 
-The brackets and characters within them (called format fields) are replaced with
-the objects passed into the :meth:`~str.format` method.  A number in the
-brackets refers to the position of the object passed into the
-:meth:`~str.format` method. ::
+Хашилтын тэмдтгүүдийг формат талбар гэж нэрлэдэг ба эдгээр нь :meth:`~str.format`
+функцаар дамжиж ирсэн объектын утгаар солигддог. Хашилтан дотор байгаа тоонууд
+нь :meth:`~str.format` функцаар дамжиж ирсэн объектуудын байрлалыг заадаг. ::
 
    >>> print '{0} and {1}'.format('spam', 'eggs')
    spam and eggs
    >>> print '{1} and {0}'.format('spam', 'eggs')
    eggs and spam
 
-If keyword arguments are used in the :meth:`~str.format` method, their values
-are referred to by using the name of the argument. ::
+Хэрвээ :meth:`~str.format` функцын нэрлэсэн аргументыг хэрэглэсэн байвал, 
+тэдгээрийн утга нь тухайн хашилтанд нэрлэсэн түлхүүр үгээр солигддог. ::
 
    >>> print 'This {food} is {adjective}.'.format(
    ...       food='spam', adjective='absolutely horrible')
    This spam is absolutely horrible.
 
-Positional and keyword arguments can be arbitrarily combined::
+Байрлалын болон түлхүүр үгтэй аргументуудыг дураараа хослуулан ашиглаж болно::
 
    >>> print 'The story of {0}, {1}, and {other}.'.format('Bill', 'Manfred',
    ...                                                    other='Georg')
    The story of Bill, Manfred, and Georg.
 
-``'!s'`` (apply :func:`str`) and ``'!r'`` (apply :func:`repr`) can be used to
-convert the value before it is formatted. ::
+``'!s'`` (хэрэгжилт нь :func:`str`) ба ``'!r'`` (хэрэгжилт нь :func:`repr`)
+операторууд нь тухайн стрингийг хэлбэржүүлэхээс өмнө хэрэглэгдэж болно. ::
 
    >>> import math
    >>> print 'The value of PI is approximately {}.'.format(math.pi)
@@ -158,16 +163,17 @@ convert the value before it is formatted. ::
    >>> print 'The value of PI is approximately {!r}.'.format(math.pi)
    The value of PI is approximately 3.141592653589793.
 
-An optional ``':'`` and format specifier can follow the field name. This allows
-greater control over how the value is formatted.  The following example
-truncates Pi to three places after the decimal.
+``':'`` болон хэлбэр тодорхойлогч нь талбарын нэрийн араас орж болно. Энэ нь 
+тухайн үндсэн боломжоос илүү утгыг хэлбэржүүлэх боломж олгоно. Дараах жишээ нь
+дээр пи тооны бутархайн орныг 3 оронгоор тасалсан байна. ::
 
    >>> import math
    >>> print 'The value of PI is approximately {0:.3f}.'.format(math.pi)
    The value of PI is approximately 3.142.
 
-Passing an integer after the ``':'`` will cause that field to be a minimum
-number of characters wide.  This is useful for making tables pretty. ::
+``':'`` тэмдэгийн араас бүхэл тоон утга дамжуулсанаар тухайн талбарын нийт урт
+тухайн тооноос багагүй байхаар хэлбэржүүлнэ. Энэ нь хүснэгт хэлбэрээр өгөгдлийг
+дүрслэхэд хялбар байх болно. ::
 
    >>> table = {'Sjoerd': 4127, 'Jack': 4098, 'Dcab': 7678}
    >>> for name, phone in table.items():
@@ -177,60 +183,61 @@ number of characters wide.  This is useful for making tables pretty. ::
    Dcab       ==>       7678
    Sjoerd     ==>       4127
 
-If you have a really long format string that you don't want to split up, it
-would be nice if you could reference the variables to be formatted by name
-instead of by position.  This can be done by simply passing the dict and using
-square brackets ``'[]'`` to access the keys ::
+Хэрвээ хуваахыг хүсэггүй байгаа урт хэмжээтэй стрингийг хэлбэржүүлэх хэрэгтэй
+байгаа бол байрлалаар аргумент дамжуулахаас илүү түлхүүр үг ашиглан
+аргументаа дамжуулбал дээр байх болно. Үүнийг хэрэгжүүлэхийн тулд толь утга
+арументаар дамжуулан дөрвөлжин хаалт ``'[]'`` ашиглан тэдгээрийн утгуудад
+хандах байдлаар хэрэгжүүлнэ ::
 
    >>> table = {'Sjoerd': 4127, 'Jack': 4098, 'Dcab': 8637678}
    >>> print ('Jack: {0[Jack]:d}; Sjoerd: {0[Sjoerd]:d}; '
    ...        'Dcab: {0[Dcab]:d}'.format(table))
    Jack: 4098; Sjoerd: 4127; Dcab: 8637678
 
-This could also be done by passing the table as keyword arguments with the '**'
-notation. ::
+Үүнийг бас өөрөөр тухайн table хувьсагчийг '**' тэмдэглэлийг ашиглан түлхүүр үг
+аргумент хэлбэрээр дамжуулж болно. ::
 
    >>> table = {'Sjoerd': 4127, 'Jack': 4098, 'Dcab': 8637678}
    >>> print 'Jack: {Jack:d}; Sjoerd: {Sjoerd:d}; Dcab: {Dcab:d}'.format(**table)
    Jack: 4098; Sjoerd: 4127; Dcab: 8637678
 
-This is particularly useful in combination with the new built-in :func:`vars`
-function, which returns a dictionary containing all local variables.
+Үүнийг шинэ үндсэн функц :func':`vars` хослуулан ашиглавал илүү хэрэгцээтэй
+байх болно, энэ нь бүх дотоод хувьсагчдыг агуулсан толийг буцаадаг.
 
-For a complete overview of string formatting with :meth:`str.format`, see
-:ref:`formatstrings`.
+Стринг хэлбэржүүлэх :meth:`str.format` функцын талаар дэлгэрэнгүйг, :ref:`formatstrings`
+хэсгээс харж болно.
 
 
-Old string formatting
----------------------
+Хуучин стринг хэлбэржүүлэлт
+---------------------------
 
-The ``%`` operator can also be used for string formatting. It interprets the
-left argument much like a :cfunc:`sprintf`\ -style format string to be applied
-to the right argument, and returns the string resulting from this formatting
-operation. For example::
+Мөн ``%`` оператор нь стрингийг хэлбэржүүлэхэд хэрэглэгддэг. Энэ нь :cfunc:`sprintf` 
+функцтай адил зүүн талын аргументаас эхлэн өгөгдсөн хэлбэржүүлэлтийн дагуу
+хэлбүүржүүлж эхэлдэг, ба тухайн хэлбэржсэн стрингийг буцаадаг. Жишээ нь ::
 
    >>> import math
    >>> print 'The value of PI is approximately %5.3f.' % math.pi
    The value of PI is approximately 3.142.
 
-Since :meth:`str.format` is quite new, a lot of Python code still uses the ``%``
-operator. However, because this old style of formatting will eventually be
-removed from the language, :meth:`str.format` should generally be used.
+:meth:`str.format` нь одоохондоо шинэ байгаа бөгөөд, ихэнх пайтон код нь ``%``
+операторыг одоо хүртэл хэрэглэсээр байна. Гэхдээ хуучин стринг хэлбэржүүлэх 
+арга нь яваандаа пайтон хэлнээс хасагдах учир, :meth:`str.format` функцыг 
+хэрэглэж байсан нь дээр.
 
-More information can be found in the :ref:`string-formatting` section.
+Илүү дэлгэрэнгүй мэдээллийг :ref:`string-formatting` хэсгээс сонирхож болно.
 
 
 .. _tut-files:
 
-Reading and Writing Files
+Файлаас уншиж, бичих
 =========================
 
 .. index::
    builtin: open
    object: file
 
-:func:`open` returns a file object, and is most commonly used with two
-arguments: ``open(filename, mode)``.
+:func:`open` функц нь файл төрлийн объектыг буцаах ба, arguments: ``open(filename, mode)``
+гэсэн 2 аргумент ихэнхдээ хэрэглэгддэг.
 
 ::
 
@@ -238,53 +245,56 @@ arguments: ``open(filename, mode)``.
    >>> print f
    <open file '/tmp/workfile', mode 'w' at 80a0960>
 
-The first argument is a string containing the filename.  The second argument is
-another string containing a few characters describing the way in which the file
-will be used.  *mode* can be ``'r'`` when the file will only be read, ``'w'``
-for only writing (an existing file with the same name will be erased), and
-``'a'`` opens the file for appending; any data written to the file is
-automatically added to the end.  ``'r+'`` opens the file for both reading and
-writing. The *mode* argument is optional; ``'r'`` will be assumed if it's
-omitted.
+Эхнийх нь файлын нэрийг агуулсан стринг төрлийн аргумент юм.   Хоёр дахь аргумент нь
+тухайн файл хэрхэн хэрэглэгдэхийг илэрхийлсэн хэдэн тэмдэгтийг агуулсан стринг төрлийн 
+хувьсагч байна.  *mode* нь ``'r'`` гэсэн утгатай байж болох ба тэр үед тухайн
+файлаас зөвхөн уншиж болно, ``'w'`` нь зөвхөн бичих (өмнө нь үүссэн файл байвал доторх нь 
+устах болно), ``'a'`` нь файлын агуулга дээр нэмэхээр нээдэг; тухайн файл руу бичсэн 
+утгууд нь автоматаар файлын төгсгөлд нэмэгдэнэ.  ``'r+'`` нь файлыг унших болон бичихээр
+нээдэг. *mode* нь дурын (заавал тодорхойлох шаардлагагүй) аргумент юм; хэрвээ тухайн аргумент 
+тодорхойлогдоогүй байвал ``'r'`` гэсэн анхны утгыг авна.
 
-On Windows, ``'b'`` appended to the mode opens the file in binary mode, so there
-are also modes like ``'rb'``, ``'wb'``, and ``'r+b'``.  Python on Windows makes
-a distinction between text and binary files; the end-of-line characters in text
-files are automatically altered slightly when data is read or written.  This
-behind-the-scenes modification to file data is fine for ASCII text files, but
-it'll corrupt binary data like that in :file:`JPEG` or :file:`EXE` files.  Be
-very careful to use binary mode when reading and writing such files.  On Unix,
-it doesn't hurt to append a ``'b'`` to the mode, so you can use it
-platform-independently for all binary files.
+Виндовс үйлдлийн систем дээр, нэмэлт ``'b'`` горим нь файлыг хоёртын горимд
+нээдэг, Тиймээс ``'rb'``, ``'wb'``, ``'r+b'`` гэх мэт нэмэлт горимууд байдаг.
+Виндовс дээрх пайтоны хувьд текст болон хоёртын файлууд ялгаатай байдаг; өгөгдөл 
+унших болон бичих үед мөрийн төгсгөл тусгай тэмдэгт далд байдлаар өөрчлөгддөг.
+Энэхүү далд өөрчлөлтийн үр дүн ASCII төрлийн текст файлуудын хувьд зүгээр байдаг
+ба, Харин :file:`JPEG`, :file:`EXE` гэх мэт хоёртын файлын хувьд эвдрэл
+үүсгэдэг. Ийм төрлийн файлаас унших болон бичих үед хоёртын горимыг ашиглахдаа
+болгоомжтой байгаарай.  Юникс төрлийн системүүд дээр ``'b'`` горимыг файл нээх 
+горим дээр нэмэхэд ямар нэг гэмтэл гардаггүй, тиймээс үүнийг ямар нэг платформ
+хамааралгүй бүх төрлийн хоёртын файлын хувьд ашиглаж болно.
 
 
 .. _tut-filemethods:
 
-Methods of File Objects
+Файл объектын функцууд
 -----------------------
 
-The rest of the examples in this section will assume that a file object called
-``f`` has already been created.
+Энэ хэсгийн ихэнх жишээн дээр гарж байгаа ``f`` файлыг өмнө аль хэдийн үүссэн 
+файл гэж үзэж байгааг анхаараарай.
 
-To read a file's contents, call ``f.read(size)``, which reads some quantity of
-data and returns it as a string.  *size* is an optional numeric argument.  When
-*size* is omitted or negative, the entire contents of the file will be read and
-returned; it's your problem if the file is twice as large as your machine's
-memory. Otherwise, at most *size* bytes are read and returned.  If the end of
-the file has been reached, ``f.read()`` will return an empty string (``""``).
-::
+файлын агуулгыг уншихийн тулд, ``f.read(size)`` гэх байдлаар дуудна, энэ нь 
+тодорхой тооны өгөгдлийг уншаад, стринг хэлбэрээр утгыг буцаана.  *size* нь 
+дурын тоон төрлийн аргумент.  *size* нь тодохойлогдоогүй эсвэл хасах утгатай 
+байх үед, файлын бүх агуулгыг уншаад буцаагдана. Хэрвээ чиний унших гэж байгаа 
+файл машиний чинь санах ойноос хэд дахин их хэмжээтэй байвал асуудал үүснэ.
+Өөрөөр хэлбэл хамгийн их *хэмжээ* тэй байтууд уншигдаад дараа нь буцаагдана.
+Хэрвээ файлын төгсгөлд хүрсэн бол, ``f.read()`` функц нь хоосон стринг (``""``)
+утгыг буцаана. ::
 
    >>> f.read()
    'This is the entire file.\n'
    >>> f.read()
    ''
 
-``f.readline()`` reads a single line from the file; a newline character (``\n``)
-is left at the end of the string, and is only omitted on the last line of the
-file if the file doesn't end in a newline.  This makes the return value
-unambiguous; if ``f.readline()`` returns an empty string, the end of the file
-has been reached, while a blank line is represented by ``'\n'``, a string
-containing only a single newline.   ::
+``f.readline()`` функц нь тухайн файлаас нэг мөрийг уншдаг; шинэ мөр тэмдэгт
+(``\n``) нь тухайн стрингийн төгсгөлд байдаг, ба зөвхөн тухайн файл нь шинэ мөр
+тэмдэгтээр төсгөөгүйгээс бусад үед сүүлийн мөрийн шинэ мөр тэмдэгт нь хасагддаг.
+Энэ нь буцаж байгаа утгыг нэгэн утгатай болгодог; Хэрвээ ``f.readline()`` нь 
+хоосон стринг буцааж байвал, файлын төгсгөлд хүрсэн гэсэн үг, тухайн үед хоосон 
+мөр нь ``'\n'`` тэмдэгтээр илэрхийлэгдэнэ, ямар ч стринг нь зөвхөн нэг шинэ
+мөр тусгай тэмдэгтийг агуулдаг.   ::
 
    >>> f.readline()
    'This is the first line of the file.\n'
@@ -293,18 +303,18 @@ containing only a single newline.   ::
    >>> f.readline()
    ''
 
-``f.readlines()`` returns a list containing all the lines of data in the file.
-If given an optional parameter *sizehint*, it reads that many bytes from the
-file and enough more to complete a line, and returns the lines from that.  This
-is often used to allow efficient reading of a large file by lines, but without
-having to load the entire file in memory.  Only complete lines will be returned.
-::
+``f.readlines()`` функц нь тухайн файл дахь бүх мөрүүдийг буцаана. Хэрвээ
+дурын параметр *sizehint* өгөгдвөл, тухайн хэмжээний файлыг байтыг файлаас
+унших ба тухайн файлын хэмжээнээс их өгөдвөл зөвхөн тухайн файлын өгөгдлийг
+буцаана. Ихэнхдээ энэ нь том хэмжээний файлыг уншихад тухайн файлыг бүтнээр нь 
+санах ойд ачаалах боломжгүй үед үр хэрэглэхэд үр дүнтэй байдаг. Зөвхөн 
+гүйцэд мөрүүд буцаж ирэх болно. ::
 
    >>> f.readlines()
    ['This is the first line of the file.\n', 'Second line of the file\n']
 
-An alternative approach to reading lines is to loop over the file object. This is
-memory efficient, fast, and leads to simpler code::
+Файлын мөрүүдийг унших өөр арга нь файл объектыг давталданд ашиглах арга юм.
+Энэ нь санах ойд хэмнэлттэй, хурдан, энгийн кодоор хийх боломжтой::
 
    >>> for line in f:
            print line,
@@ -312,30 +322,30 @@ memory efficient, fast, and leads to simpler code::
    This is the first line of the file.
    Second line of the file
 
-The alternative approach is simpler but does not provide as fine-grained
-control.  Since the two approaches manage line buffering differently, they
-should not be mixed.
+Энэхүү арга нь маш энгийн боловч бусад өөр файлын удирдлагуудаар хангагдаагүй 
+байдаг.  Дээрх хоёр арга нь мөрүүдийг буффэрлэхдээ өөрөөр хийдэг ба тэдгээрийг
+хослуулан хэрэглэж болохгүй.
 
-``f.write(string)`` writes the contents of *string* to the file, returning
-``None``.   ::
+``f.write(string)``  *стринг* ийн утгыг файл руу бичих ба, ``None`` утга
+буцаана.   ::
 
    >>> f.write('This is a test\n')
 
-To write something other than a string, it needs to be converted to a string
-first::
+Стрингээс өөр төрлийн утгыг файл руу бичихийн тулд эхлээд түүнийг стринг рүү
+хөрвүүлсэн байх хэрэгтэй::
 
    >>> value = ('the answer', 42)
    >>> s = str(value)
    >>> f.write(s)
 
-``f.tell()`` returns an integer giving the file object's current position in the
-file, measured in bytes from the beginning of the file.  To change the file
-object's position, use ``f.seek(offset, from_what)``.  The position is computed
-from adding *offset* to a reference point; the reference point is selected by
-the *from_what* argument.  A *from_what* value of 0 measures from the beginning
-of the file, 1 uses the current file position, and 2 uses the end of the file as
-the reference point.  *from_what* can be omitted and defaults to 0, using the
-beginning of the file as the reference point. ::
+``f.tell()`` нь файлын идэвхтэй байрлалыг илэрхийлсэн бүхэл тоон утгыг буцаах
+ба, тэрхүү тоо нь файлын эхлэлээс байрлал хүртэл байтын хэмжээ байна. Файлын 
+идэвхтэй байрлалыг өөрчлөхийн тулд ``f.seek(offset, from_what)`` функцыг 
+ашиглана.  Тухайн байрлал нь заагдсан байрлал дээр  *offset*  хэмжээг нэмсэнээр 
+бодогдоно; заагдсан байрлал нь *from_what* аргументаар заагдана.  *from_what* ийн
+утга 0 нь файлын эхлэлийг заана, 1 нь тухайн идэвхтэй байрлал, 2 нь тухайн файлын
+төгсгөлийн байрлал юм.  *from_what* нь тодорхойлогдохгүй байж болох ба анхны утга нь
+0 байна, өөрөөр хэлбэл файлын эхлэлийг зааж байдаг. ::
 
    >>> f = open('/tmp/workfile', 'r+')
    >>> f.write('0123456789abcdef')
@@ -346,9 +356,10 @@ beginning of the file as the reference point. ::
    >>> f.read(1)
    'd'
 
-When you're done with a file, call ``f.close()`` to close it and free up any
-system resources taken up by the open file.  After calling ``f.close()``,
-attempts to use the file object will automatically fail. ::
+Файл дээр ажиллаж дууссан бол ``f.close()`` функцыг файлыг хааж, системж эзэлж 
+байсан нөөцөө чөлөөлөхийн тулд дуудах хэрэгтэй.  ``f.close()`` функцыг
+дуудасны дараа, файлын объектыг ашиглахыг завдсан үйлдэл дээр алдаа автоматаар
+гарах болно. ::
 
    >>> f.close()
    >>> f.read()
@@ -356,62 +367,65 @@ attempts to use the file object will automatically fail. ::
      File "<stdin>", line 1, in ?
    ValueError: I/O operation on closed file
 
-It is good practice to use the :keyword:`with` keyword when dealing with file
-objects.  This has the advantage that the file is properly closed after its
-suite finishes, even if an exception is raised on the way.  It is also much
-shorter than writing equivalent :keyword:`try`\ -\ :keyword:`finally` blocks::
+Файл объекттай хамт :keyword:`with` түлхүүр үгийг ашиглах нь сайн арга юм. 
+Ингэснээр тухайн файл дээр хийж буй иж бүрдэл үйлдэл дуусахад тухайн файл
+хаагддаг, тухайн үйлдэлүүд хийгдэж байх үед алдаа гарсан ч гэсэн тухайн файл
+зөв хаагдах болно.  Энэ нь :keyword:`try`\ -\ :keyword:`finally` блоктой адил
+боловч илүү богино байдлаар бичигддэг::
 
     >>> with open('/tmp/workfile', 'r') as f:
     ...     read_data = f.read()
     >>> f.closed
     True
 
-File objects have some additional methods, such as :meth:`~file.isatty` and
-:meth:`~file.truncate` which are less frequently used; consult the Library
-Reference for a complete guide to file objects.
+Файл объект нь зарим нэмэлт функцуудтай, :meth:`~file.isatty`, :meth:`~file.truncate`
+гэх мэт өргөн хэрэглэгддэггүй функцууд байна; Файл объектын талаар дэлгэрэнгүй
+мэлээллийг стандарт сангийн лавлах хэсгээс харж болно.
 
 
 .. _tut-pickle:
 
-The :mod:`pickle` Module
+Модуль :mod:`pickle`
 ------------------------
 
 .. index:: module: pickle
 
-Strings can easily be written to and read from a file. Numbers take a bit more
-effort, since the :meth:`read` method only returns strings, which will have to
-be passed to a function like :func:`int`, which takes a string like ``'123'``
-and returns its numeric value 123.  However, when you want to save more complex
-data types like lists, dictionaries, or class instances, things get a lot more
-complicated.
+Стринг төрлийн объектуудыг файл руу бичих, уншихад хялбар. :meth:`read` функц
+нь зөвхөн стринг төрлийн утга буцаадаг учир, тоон төрлийг файлаас уншихад, тухайн 
+уншсан утгыг стрингээс тоон төрөл рүү хөрвүүлдэг :func:`int` функцаар дамжуулах
+зэрэг бага зэрэг ажиллагаа хэрэгтэй байдаг.  Мөн түүнчлэн жагсаалт, толь, классын
+төл гэх мэт төвөгтэй нийлмэл хэлбэртэй өгөгдлүүдийг файлд хадгалах шаардлагатай
+байдаг.
 
-Rather than have users be constantly writing and debugging code to save
-complicated data types, Python provides a standard module called :mod:`pickle`.
-This is an amazing module that can take almost any Python object (even some
-forms of Python code!), and convert it to a string representation; this process
-is called :dfn:`pickling`.  Reconstructing the object from the string
-representation is called :dfn:`unpickling`.  Between pickling and unpickling,
-the string representing the object may have been stored in a file or data, or
-sent over a network connection to some distant machine.
+Эдгээр нийлмэл өгөгдлийн төрлүүдийг файлд хадгалын тулд хэрэглэгчидээр байнга
+өөрсдөөр нь код бичүүлгүйн тулд пайтон нь стандарт модуль :mod:`pickle` ээр
+хангагдсан байдаг. Энэ нь ямар ч төрлийн пайтоны өгөгдлийн төрлийг (зарим
+төрлийн пайтоны кодыг ч гэсэн болно!) авч чадах гайхалтай модуль юм. Үүнийг 
+ашиглан объектыг стринг рүү хөрвүүлэхийг :dfn:`pickling` гэж нэрлэдэг ба, эсрэгээр
+нь стрингээс пайтоны объект үүсгэхийг :dfn:`unpickling` гэж нэрлэдэг. Pickling болон 
+unpickling ийн хооронд үүссэн стрингийг файлд өгөгдөл хэлбэрээр хадгалж, эсвэл 
+тусдаа хоолын хоёр машины хооронд сүлжээгээр дамжуулна болно.
 
-If you have an object ``x``, and a file object ``f`` that's been opened for
-writing, the simplest way to pickle the object takes only one line of code::
+Хэрвээ ``x`` гэдэг объект байгаа ба мөн бичихээр нээгдсэн ``f`` байгаа бол 
+тухайн объектыг файл руу хадгалах код нь ердөө нэг мөр код болох юм::
 
    pickle.dump(x, f)
 
-To unpickle the object again, if ``f`` is a file object which has been opened
-for reading::
+буцаагаад тухайн ``f`` файлаас тухайн объектыг дараах байдлаар үүсгэнэ::
 
    x = pickle.load(f)
 
-(There are other variants of this, used when pickling many objects or when you
-don't want to write the pickled data to a file; consult the complete
-documentation for :mod:`pickle` in the Python Library Reference.)
+(дээрх аргаас өөр, олон объектыг пикл хийх, файлаас өөр зүйл рүү пикл хийх гэх
+мэт өөр хэлбэрүүд байж болох ба пайтоны стандарт сангийн баримтын :mod:`pickle` 
+модулийн хэсгээс дэлгэрэнгүй үзээрэй.)
 
-:mod:`pickle` is the standard way to make Python objects which can be stored and
-reused by other programs or by a future invocation of the same program; the
-technical term for this is a :dfn:`persistent` object.  Because :mod:`pickle` is
-so widely used, many authors who write Python extensions take care to ensure
-that new data types such as matrices can be properly pickled and unpickled.
+:mod:`pickle` нь хадгалагдаж болох, өөр програмуудад дахин ашиглагдаж болох,
+эсвэл тухайн програмд ирэйдүүд хэрэглэгдэж болох зэрэг объектыг үүсгэх
+пайтоны стандарт арга юм. Техникийн нэр томъёонд үүнийг :dfn:`persistent` 
+объект гэдэг.  :mod:`pickle` модуль маш өргөн хэрэглэгддэг учир, пайтонд
+зориулан өргөтгөл, шинэ модуль бичдэг олон пайтон хөгжүүлэгчид матрикс гэх 
+мэт шинэ төрлийн өгөгдлийн төрлийг зөв хэлбэрээр пикл болон анпикл хийдэг 
+болгохын төлөө санаа тавин ажиллаж байна.
+
 
 
