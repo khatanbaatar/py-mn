@@ -1,10 +1,11 @@
+Python style guide
+==================
 PEP: 8
 ======
 Title: Пайтон кодын style guide
 Version: $Revision$
 Last-Modified: $Date$
-Author: guido@python.org (Guido van Rossum),
-    barry@python.org (Barry Warsaw)
+Author: guido@python.org (Guido van Rossum), barry@python.org (Barry Warsaw)
 Status: Active
 Type: Process
 Created: 05-Jul-2001
