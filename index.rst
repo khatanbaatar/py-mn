@@ -16,7 +16,7 @@
 
 .. _Sphinx: http://sphinx.pocoo.org/
 .. _reStructuredText: http://docutils.sourceforge.net/rst.html
-.. _github дээр: http://github.com/dulmandakh/py-mn
+.. _github дээр: https://github.com/python-mongolia/py-mn
 
 Клубын үйл ажиллагааны нээлт болгож `Пайтоны албан ёсны сурах бичгийг`_ орчуулж байгаа бөгөөд таны оролцоо, шүүмж үүнд маш их хэрэгтэй.
 
