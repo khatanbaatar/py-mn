@@ -1,81 +1,74 @@
-Python style guide
-==================
-PEP: 8
-======
-Title: Пайтон кодын style guide
-Version: $Revision$
-Last-Modified: $Date$
-Author: guido@python.org (Guido van Rossum), barry@python.org (Barry Warsaw)
-Status: Active
-Type: Process
-Created: 05-Jul-2001
-Post-History: 05-Jul-2001
+PEP 8: Пайтон кодын бичиглэлийн зөвлөмж
+========================================
+Зохиогч: guido@python.org (Хидо ван Россум), barry@python.org (Бэрри Уарсау)
+Зохиогдсон он: 2001.7.5
 
 
-Introduction
+Танилцуулга
 
-    This document gives coding conventions for the Python code comprising the
-    standard library in the main Python distribution.  Please see the
-    companion informational PEP describing style guidelines for the C code in
-    the C implementation of Python[1].
+    Энэ баримт бичиг Пайтоны үндсэн тараамал дахь стандарт санг хамрах
+    Пайтон кодын бичиглэлийн тогтсон журмыг агуулах юм. Пайтоны С хэлээрх
+    хэрэгжүүлэлт дэхь С кодын бичиглэлийн зөвлөмжийг дагуул мэдээллийн PEP
+    баримтаас үзнэ үү [1].
 
-    This document was adapted from Guido's original Python Style Guide
-    essay[2], with some additions from Barry's style guide[5].  Where there's
-    conflict, Guido's style rules for the purposes of this PEP.  This PEP may
-    still be incomplete (in fact, it may never be finished <wink>).
-
-
-A Foolish Consistency is the Hobgoblin of Little Minds
-
-    One of Guido's key insights is that code is read much more often than it
-    is written.  The guidelines provided here are intended to improve the
-    readability of code and make it consistent across the wide spectrum of
-    Python code.  As PEP 20 [6] says, "Readability counts".
-
-    A style guide is about consistency.  Consistency with this style guide is
-    important.  Consistency within a project is more important. Consistency
-    within one module or function is most important.
-
-    But most importantly: know when to be inconsistent -- sometimes the style
-    guide just doesn't apply.  When in doubt, use your best judgment.  Look
-    at other examples and decide what looks best.  And don't hesitate to ask!
-
-    Two good reasons to break a particular rule:
-
-    (1) When applying the rule would make the code less readable, even for
-        someone who is used to reading code that follows the rules.
-
-    (2) To be consistent with surrounding code that also breaks it (maybe for
-        historic reasons) -- although this is also an opportunity to clean up
-        someone else's mess (in true XP style).
+    Энэ баримт бичиг Хидогийн анх бичсэн Пайтон бичиглэлийн зөвлөмж хэмээх
+    эсээнээс[2] үүдэлтэй бөгөөд Бэрригийн бичиглэлийн зөвлөмжөөс[5] зарим
+    зүйл нэмэгдсэн байгаа болно. Эдгээр хоёр зөвлөмж зөрчилдөх үед Хидогийн
+    бичиглэлийн зөвлөмж энэ PEP-ийн хувьд давамгайлах болно. Энэ PEP магадгүй
+    дутуу байж мэднэ (үнэндээ, хэзээ ч бүрэн болохгүй буй за <ирмэх>).
 
 
-Code lay-out
+Ухаангүй нийцэмж бол өчүүхэн толгойн дүрсгүй чөтгөр
 
-  Indentation
+    Хидо нэгэн чухал зүйл ажигласан нь код бичигдэхээс илүү, уншигдах нь
+    олонтаа байдаг байв. Энд буй зөвлөмжүүд кодын уншихад эвтэй байдлыг
+    сайжруулах, Пайтон кодын өргөн хүрээнд тогтсон бичиглэлтэй байхад
+    зориулагдсан юм. PEP 20-д [6] бичсэнчлэн, "Уншигдах байдал чухал".
 
-    Use 4 spaces per indentation level.
+    Бичиглэлийн зөвлөмж гэдэг тогтвортой байдлын төлөө байдаг. Энэхүү
+    бичиглэлийн зөвлөмжийг тогтвортой дагах нь чухал. Төслийнхөө хүрээнд
+    тогтвортой бичиглэлтэй байна гэдэг бүр илүү чухал. Аливаа модуль эсвэл
+    фүнкцийн дотор тогтвортой бичиглэлтэй байх бол бүр ч чухал.
 
-    For really old code that you don't want to mess up, you can continue to
-    use 8-space tabs.
+    Гэхдээ хамгийн чухал нь: хэзээ тогтвортой байдлыг эвдэхээ мэдэх --
+    заримдаа бичиглэлийн зөвлөмж таардаггүй. Эргэлзэх үедээ өөрийн бодлоо
+    дага. Бусдын жишээг хараад аль нь тохирохыг сонгох хэрэгтэй. Бас асууж
+    лавлахдаа битгий эргэлзээрэй!
 
-  Tabs or Spaces?
+    Аливаа дүрмийг зөрчих хоёр зөв шалтгаан:
 
-    Never mix tabs and spaces.
+    (1) Дүрмийг баримтласан үед кодыг уншихад илүү хэцүү болж байвал; үүнд
+        дүрэм баримталдаг кодыг уншиж дадсан хүн ч хамаатай.
 
-    The most popular way of indenting Python is with spaces only.  The
-    second-most popular way is with tabs only.  Code indented with a mixture
-    of tabs and spaces should be converted to using spaces exclusively.  When
-    invoking the Python command line interpreter with the -t option, it issues
-    warnings about code that illegally mixes tabs and spaces.  When using -tt
-    these warnings become errors.  These options are highly recommended!
+    (2) Эргэн тойрны кодын бичиглэлийг дагаснаар бичиглэлийн зөвлөмжийг
+        үл дагах болох үед (хуучин кодын тохиолдолд) -- гэвч энэ хэн нэгний
+        тарьсан хогийг цэвэрлэх боломж гэдгийг санаарай (жинхэнэ XP маягаар).
 
-    For new projects, spaces-only are strongly recommended over tabs.  Most
-    editors have features that make this easy to do.
+Кодын зохиомж
 
-  Maximum Line Length
+  Догол мөр
 
-    Limit all lines to a maximum of 79 characters.
+    Нэг догол мөрийн түвшинг 4 хоосон зайгаар гаргана.
+
+    Бусниулахаасаа айж буй эртний код байвал 8 хоосон зай ашиглаад явж болно.
+
+  Таб уу, хоосон зай юу?
+    
+    Таб, хоосон зай хоёрыг хэзээ ч бүү холь.
+
+    Пайтоныг доголжуулах хамгийн түгээмэл арга бол дан хоосон зай ашиглах юм.
+    Хоёр дахь түгээмэл арга нь дан таб ашиглах юм. Таб, хоосон зайг хольж
+    доголжуулсан кодыг хоосон зай руу хөрвүүлэх хэрэгтэй. Пайтоны тушаалын
+    мөрийн хөрвүүлэгчийг -t сонголттойгоорэхлүүлбэл таб, хоосон зай хольсон
+    код бичсэн үед анхааруулдаг. Харин -tt гэж ашиглавал анхааруулга нь алдаа
+    болдог. Эдгээр сонголтыг ашиглаж дадахыг зөвлөж байна!
+
+    Шинэ төслийн хувьд табын оронд дан хоосон зайг ашиглан эхлэхийг хичээнгүйлэн
+    захиж байна. Ихэнх засварлагчдад үүнийг хялбарчилсан боломжууд байдаг.
+
+  Мөрийн уртын дээд хязгаар
+
+    Бүх мөрийг 79 тэмдэгтийн урттайгаар хязгаарла.
 
     There are still many devices around that are limited to 80 character
     lines; plus, limiting windows to 80 characters makes it possible to have
@@ -148,9 +141,7 @@ Code lay-out
     names.
 
     Open source projects with a global audience are encouraged to
-    adopt a similar policy.
-
-
+    adopt a similar policy.  
 Импорт
 
     - Импортууд тусдаа мөрөнд байх хэрэгтэй:
@@ -784,9 +775,9 @@ Programming Recommendations
         Маш буруу: if greeting is True:
 
 
-References
+Лавламж
 
-    [1] PEP 7, Style Guide for C Code, van Rossum
+    [1] PEP 7, С кодын бичиглэлийн зөвлөмж, ван Россум
 
     [2] http://www.python.org/doc/essays/styleguide.html
 
